@@ -5,6 +5,7 @@ import type {
 	IWebhookFunctions,
 	IWebhookResponseData,
 } from "n8n-workflow";
+import { NodeOperationError } from "n8n-workflow";
 import { talentirApiRequest } from "./shared/transport";
 
 export class TalentirTrigger implements INodeType {
@@ -55,6 +56,7 @@ export class TalentirTrigger implements INodeType {
 				description: "The event type to listen for",
 			},
 		],
+		usableAsTool: true,
 	};
 
 	webhookMethods = {
@@ -75,7 +77,10 @@ export class TalentirTrigger implements INodeType {
 				const event = this.getNodeParameter("event") as string;
 
 				if (!webhookUrl) {
-					throw new Error("Unable to get webhook URL");
+					throw new NodeOperationError(
+						this.getNode(),
+						"Unable to get webhook URL",
+					);
 				}
 
 				const body = {
@@ -98,7 +103,8 @@ export class TalentirTrigger implements INodeType {
 
 					return true;
 				} catch (error) {
-					throw new Error(
+					throw new NodeOperationError(
+						this.getNode(),
 						`Failed to create webhook: ${error instanceof Error ? error.message : "Unknown error"}`,
 					);
 				}
@@ -131,7 +137,8 @@ export class TalentirTrigger implements INodeType {
 						return true;
 					}
 
-					throw new Error(
+					throw new NodeOperationError(
+						this.getNode(),
 						`Failed to delete webhook: ${error instanceof Error ? error.message : "Unknown error"}`,
 					);
 				}
