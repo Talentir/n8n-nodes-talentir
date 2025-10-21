@@ -34,7 +34,8 @@
 			"dist/credentials/TalentirApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Talentir/Talentir.node.js"
+			"dist/nodes/Talentir/Talentir.node.js",
+			"dist/nodes/Talentir/TalentirTrigger.node.js"
 		]
 	},
 	"devDependencies": {
