@@ -1,0 +1,19 @@
+{
+	"node": "n8n-nodes-base.talentir",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Utility"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://www.talentir.com/api/v1"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://www.talentir.com/api/v1"
+			}
+		]
+	}
+}
+
