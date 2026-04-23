@@ -55,6 +55,19 @@ export class TalentirTrigger implements INodeType {
 				default: "payout",
 				description: "The event type to listen for",
 			},
+			{
+				displayName: "Environment",
+				name: "environment",
+				type: "options",
+				noDataExpression: true,
+				options: [
+					{ name: "Production", value: "production" },
+					{ name: "Sandbox", value: "sandbox" },
+				],
+				default: "production",
+				description:
+					"Which Talentir environment to subscribe to. Required by the webhook API.",
+			},
 		],
 		usableAsTool: true,
 	};
@@ -75,6 +88,7 @@ export class TalentirTrigger implements INodeType {
 			async create(this: IHookFunctions): Promise<boolean> {
 				const webhookUrl = this.getNodeWebhookUrl("default");
 				const event = this.getNodeParameter("event") as string;
+				const environment = this.getNodeParameter("environment") as string;
 
 				if (!webhookUrl) {
 					throw new NodeOperationError(
@@ -86,6 +100,7 @@ export class TalentirTrigger implements INodeType {
 				const body = {
 					targetUrl: webhookUrl,
 					eventType: event,
+					environment,
 				};
 
 				try {
