@@ -88,6 +88,14 @@ jobs:
       - name: Upgrade npm
         run: npm install -g npm@latest
 
+      - name: Debug environment
+        run: |
+          echo "node: $(node --version)"
+          echo "npm:  $(npm --version)"
+          echo "which npm: $(which npm)"
+          echo "OIDC URL set: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo YES || echo NO)"
+          echo "OIDC TOKEN set: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ] && echo YES || echo NO)"
+
       - name: Install dependencies
         run: npm ci
 
