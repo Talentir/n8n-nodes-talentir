@@ -88,20 +88,6 @@ jobs:
       - name: Upgrade npm
         run: npm install -g npm@latest
 
-      - name: Debug environment
-        run: |
-          echo "node: $(node --version)"
-          echo "npm:  $(npm --version)"
-          echo "which npm: $(which npm)"
-          echo "OIDC URL set: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo YES || echo NO)"
-          echo "OIDC TOKEN set: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ] && echo YES || echo NO)"
-          echo "--- npm config ---"
-          npm config get registry
-          echo "--- .npmrc files ---"
-          ls -la ~/.npmrc /etc/npmrc ./.npmrc 2>&1 || true
-          echo "--- npm whoami (expects to fail) ---"
-          npm whoami 2>&1 || true
-
       - name: Install dependencies
         run: npm ci
 
@@ -118,4 +104,3 @@ jobs:
           npm run release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_LOGLEVEL: verbose
