@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-talentir",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "n8n node for interacting with the Talentir creator economy platform API",
 	"license": "MIT",
 	"homepage": "https://github.com/talentir/n8n-nodes-talentir#readme",
