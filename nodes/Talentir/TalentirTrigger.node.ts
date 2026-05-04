@@ -4,8 +4,9 @@ import type {
 	INodeTypeDescription,
 	IWebhookFunctions,
 	IWebhookResponseData,
+	JsonObject,
 } from "n8n-workflow";
-import { NodeOperationError } from "n8n-workflow";
+import { NodeApiError, NodeOperationError } from "n8n-workflow";
 import { talentirApiRequest } from "./shared/transport";
 
 export class TalentirTrigger implements INodeType {
@@ -118,10 +119,7 @@ export class TalentirTrigger implements INodeType {
 
 					return true;
 				} catch (error) {
-					throw new NodeOperationError(
-						this.getNode(),
-						`Failed to create webhook: ${error instanceof Error ? error.message : "Unknown error"}`,
-					);
+					throw new NodeApiError(this.getNode(), error as JsonObject);
 				}
 			},
 
@@ -152,10 +150,7 @@ export class TalentirTrigger implements INodeType {
 						return true;
 					}
 
-					throw new NodeOperationError(
-						this.getNode(),
-						`Failed to delete webhook: ${error instanceof Error ? error.message : "Unknown error"}`,
-					);
+					throw new NodeApiError(this.getNode(), error as JsonObject);
 				}
 			},
 		},

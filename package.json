@@ -3,7 +3,7 @@
 	"version": "0.1.2",
 	"description": "n8n node for interacting with the Talentir creator economy platform API",
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/talentir/n8n-nodes-talentir#readme",
 	"keywords": [
 		"n8n-community-node-package"
 	],
@@ -39,7 +39,7 @@
 		]
 	},
 	"devDependencies": {
-		"@n8n/node-cli": "*",
+		"@n8n/node-cli": "^0.28.0",
 		"eslint": "9.32.0",
 		"prettier": "3.6.2",
 		"release-it": "^19.0.4",
