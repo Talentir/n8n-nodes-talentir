@@ -6,7 +6,7 @@ import type {
 	IWebhookResponseData,
 	JsonObject,
 } from "n8n-workflow";
-import { NodeApiError, NodeOperationError } from "n8n-workflow";
+import { NodeApiError, NodeConnectionTypes, NodeOperationError } from "n8n-workflow";
 import { talentirApiRequest } from "./shared/transport";
 
 export class TalentirTrigger implements INodeType {
@@ -25,7 +25,7 @@ export class TalentirTrigger implements INodeType {
 			name: "Talentir Trigger",
 		},
 		inputs: [],
-		outputs: ["main"],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: "talentirApi",

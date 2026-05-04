@@ -1,4 +1,5 @@
 import type { INodeType, INodeTypeDescription } from "n8n-workflow";
+import { NodeConnectionTypes } from "n8n-workflow";
 import { payoutDescription } from "./resources/payout";
 import { teamDescription } from "./resources/team";
 
@@ -18,8 +19,8 @@ export class Talentir implements INodeType {
 			name: "Talentir",
 		},
 		usableAsTool: true,
-		inputs: ["main"],
-		outputs: ["main"],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: "talentirApi",
